@@ -1,0 +1,16 @@
+# Vim temporary and local state files
+*.swp
+*.swo
+*.swn
+*~
+.netrwhist
+Session.vim
+tags
+tags-*
+
+# Operating system metadata
+.DS_Store
+
+# Local assistant runtime data
+.agents/
+.codex/
