@@ -1,70 +1,70 @@
-# 协作规范
+# Contributing Guidelines
 
-## 文档格式
+## Documentation Language and Format
 
-- 项目文档统一使用 Markdown，文件扩展名为 `.md`。
-- 不新增 `.txt`、`.rst` 等其他格式的说明文档。
-- Vim 配置、脚本和其他源码使用各自正确的文件格式，不受本条限制。
+- All project documentation must be written in English and use Markdown with the `.md` extension.
+- Do not add documentation in formats such as `.txt` or `.rst`.
+- Vim configuration, scripts, and other source files must continue to use the formats required by their respective tools.
 
-## 变更日志
+## Changelog
 
-- 所有准备纳入版本控制的配置、脚本和文档修改，都必须在同一个逻辑批次内更新根目录的 `CHANGELOG.md`。
-- 尚未发布的修改记录在 `Unreleased` 下，并按 `Added`、`Changed`、`Fixed`、`Removed` 等类别归档。
-- 每条日志描述可感知的结果，避免只写“修改配置”或“更新文件”。
-- 一个逻辑批次写一组对应记录，不需要为批次内的每次保存分别写日志。
-- 仅修正或整理已有日志时，不需要再为这次日志修改追加递归记录。
+- Every configuration, script, or documentation change intended for version control must update the root `CHANGELOG.md` in the same logical batch.
+- Record unreleased changes under `Unreleased` and group them under categories such as `Added`, `Changed`, `Fixed`, or `Removed`.
+- Write all changelog entries in English and describe observable results instead of vague actions such as "update files."
+- Add one related group of entries per logical batch; do not add an entry for every save within that batch.
+- A change that only corrects or reorganizes existing changelog content does not require a recursive changelog entry.
 
-## 逻辑批次
+## Logical Batches
 
-提交以“完整、可验证的逻辑成果”为单位，不机械规定修改次数、文件数或代码行数。
+Commits are based on complete, verifiable outcomes rather than arbitrary thresholds for edit count, file count, or lines changed.
 
-- 不因每次保存、每个文件或每处小改动立即提交。
-- 将目标一致、相互关联的实现、文档、日志和验证积累成一个逻辑批次后统一提交。
-- 同一目标涉及多个文件时可以放在一个提交中；目的不同的修改必须拆开。
-- 一个批次应能被独立理解、验证和回退。
-- 紧急且独立的修复即使改动较小，只要结果完整且经过验证，也可以单独提交。
-- 避免在主分支保留 `WIP` 提交；临时分支上的零散提交应在合并前整理。
+- Do not commit after every save, file, or small edit.
+- Accumulate related implementation, documentation, changelog, and verification work into one logical batch before committing.
+- Changes spanning several files may share one commit when they serve the same goal; unrelated goals must use separate commits.
+- Each batch must be independently understandable, verifiable, and reversible.
+- A small urgent fix may be committed independently when it is complete and verified.
+- Avoid `WIP` commits on the main branch. Clean up fragmented commits from temporary branches before merging.
 
-## 提交消息
+## Commit Messages
 
-使用 Conventional Commits 格式：
-
-```text
-<type>(<scope>): <简明中文摘要>
-```
-
-常用 `type`：
-
-- `feat`：新增配置或能力。
-- `fix`：修复错误、冲突或兼容性问题。
-- `refactor`：重构现有配置且不改变功能。
-- `perf`：优化启动速度或运行性能。
-- `docs`：只修改 Markdown 文档。
-- `test`：新增或调整验证方式。
-- `chore`：仓库维护、依赖或工具调整。
-- `build`：构建或安装流程调整。
-- `ci`：持续集成配置调整。
-- `revert`：撤销已有提交。
-
-推荐 `scope`：`core`、`plugins`、`keymaps`、`ui`、`lsp`、`docs`、`repo`。没有更合适的范围时使用 `repo`。
-
-示例：
+Use the Conventional Commits format with an English summary:
 
 ```text
-feat(plugins): 增加模糊搜索插件配置
-fix(keymaps): 解决终端模式退出快捷键冲突
-docs(repo): 完善配置安装说明
-chore(repo): 初始化 Vim 配置仓库规范
+<type>(<scope>): <concise English summary>
 ```
 
-标题应直接说明结果并保持简洁。复杂提交可在正文补充修改原因、主要内容和验证方式。
+Common `type` values:
 
-## 提交前检查
+- `feat`: add a configuration or capability.
+- `fix`: correct an error, conflict, or compatibility problem.
+- `refactor`: restructure existing configuration without changing behavior.
+- `perf`: improve startup or runtime performance.
+- `docs`: change Markdown documentation only.
+- `test`: add or adjust verification.
+- `chore`: maintain the repository, dependencies, or tooling.
+- `build`: change the build or installation workflow.
+- `ci`: change continuous integration configuration.
+- `revert`: revert an existing commit.
 
-一个逻辑批次同时满足以下条件后再提交：
+Recommended `scope` values are `core`, `plugins`, `keymaps`, `ui`, `lsp`, `docs`, and `repo`. Use `repo` when no narrower scope applies.
 
-1. 当前功能、修复或整理工作已经完整。
-2. 相关 Markdown 文档和 `CHANGELOG.md` 已同步更新。
-3. 已检查 `git diff`、`git diff --cached` 和 `git diff --check`。
-4. 已执行与改动相匹配的 Vim 启动或配置验证。
-5. 已确认没有交换文件、缓存、密钥、本机路径或其他隐私内容进入提交。
+Examples:
+
+```text
+feat(plugins): add fuzzy finder configuration
+fix(keymaps): resolve terminal mode exit conflict
+docs(repo): improve configuration installation guide
+chore(repo): initialize Vim configuration repository conventions
+```
+
+Keep the subject concise and state the result directly. For complex changes, use the commit body to explain the motivation, main changes, and verification performed.
+
+## Pre-commit Checklist
+
+Commit a logical batch only after all applicable conditions are met:
+
+1. The feature, fix, or maintenance task is complete.
+2. Related Markdown documentation and `CHANGELOG.md` are up to date.
+3. `git diff`, `git diff --cached`, and `git diff --check` have been reviewed.
+4. Vim startup or configuration checks appropriate to the change have passed.
+5. No swap files, caches, credentials, secrets, machine-specific paths, or other private data are staged.

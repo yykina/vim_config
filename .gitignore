@@ -4,6 +4,7 @@
 *.swn
 *~
 .netrwhist
+nvim.log
 Session.vim
 tags
 tags-*

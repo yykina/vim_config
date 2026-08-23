@@ -1,33 +1,33 @@
-# 仓库协作指引
+# Repository Guidelines
 
-## 适用范围
+## Scope
 
-本文件适用于仓库根目录及其所有子目录。
+This file applies to the repository root and every subdirectory.
 
-## 项目目标
+## Project Purpose
 
-本仓库用于维护 Vim 配置。修改时应优先保证配置清晰、启动可靠，并避免无关改动。
+This repository maintains a Vim configuration. Changes should prioritize clear configuration, reliable startup, and a focused scope.
 
-## 工作要求
+## Working Requirements
 
-- 动手前检查相关配置、现有文档和工作区状态，保留用户已有且与当前任务无关的修改。
-- 所有项目文档必须使用 Markdown（`.md`）；配置源码继续使用 Vim 能正确读取的格式。
-- 每次准备纳入版本控制的修改，都必须在同一逻辑批次内更新 `CHANGELOG.md` 的 `Unreleased` 部分。
-- 日志按完整逻辑批次记录，不为同一批次中的每次小编辑重复记账。
-- 仅修正日志本身时，不需要追加描述该日志修正的递归记录。
-- 不提交 Vim 临时文件、本机状态、凭据、密钥或包含隐私的本地路径。
+- Before editing, inspect the relevant configuration, existing documentation, and working tree. Preserve unrelated user changes.
+- Write all project documentation and commit messages in English. Documentation must use Markdown (`.md`); configuration source must remain in a format Vim can read.
+- Every change intended for version control must update the `Unreleased` section of `CHANGELOG.md` in the same logical batch.
+- Record changelog entries per complete logical batch, not for every small edit within that batch.
+- A change that only corrects the changelog does not require a recursive changelog entry.
+- Never commit Vim temporary files, machine-local state, credentials, secrets, or private local paths.
 
-## Git 要求
+## Git Requirements
 
-- 遵循 [CONTRIBUTING.md](CONTRIBUTING.md) 中的 Conventional Commits 规范。
-- 不在每次保存、每次小改动或每修改一个文件后立即提交。
-- 将目标一致的实现、文档、日志和验证积累成一个完整、可验证、可回退的逻辑批次后再提交。
-- 不为凑足修改量而混入无关内容；不同目标应拆成不同提交。
-- 提交前检查工作区和暂存区差异，并运行 `git diff --check`。
-- 除非任务明确要求，否则不要改写已有提交历史或执行破坏性 Git 操作。
+- Follow the Conventional Commits rules in [CONTRIBUTING.md](CONTRIBUTING.md).
+- Do not commit after every save, small edit, or individual file change.
+- Accumulate implementation, documentation, changelog, and verification work that serves one goal into a complete, verifiable, and reversible logical batch before committing.
+- Do not mix unrelated work merely to increase the batch size; separate different goals into different commits.
+- Before committing, review working-tree and staged changes and run `git diff --check`.
+- Unless explicitly requested, do not rewrite existing history or run destructive Git operations.
 
-## 验证要求
+## Verification Requirements
 
-- 根据改动范围执行最小但充分的验证。
-- 涉及 Vim 配置入口时，至少完成一次无交互启动检查；涉及特定功能时，再验证对应命令、映射或插件行为。
-- 如果受环境限制无法验证，应在交付说明中明确指出未验证项和原因。
+- Perform the smallest set of checks that adequately covers the change.
+- When a Vim configuration entry point changes, perform at least one non-interactive startup check. For feature-specific work, also verify the relevant command, mapping, or plugin behavior.
+- If environmental constraints prevent verification, state the unverified item and the reason in the handoff.

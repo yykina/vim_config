@@ -1,0 +1,18 @@
+[submodule "pack/vendor/start/nerdtree"]
+	path = pack/vendor/start/nerdtree
+	url = https://github.com/preservim/nerdtree.git
+[submodule "pack/vendor/start/neoformat"]
+	path = pack/vendor/start/neoformat
+	url = https://github.com/sbdchd/neoformat.git
+[submodule "pack/vendor/start/nerdtree-git-plugin"]
+	path = pack/vendor/start/nerdtree-git-plugin
+	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
+[submodule "pack/vendor/start/vim-devicons"]
+	path = pack/vendor/start/vim-devicons
+	url = https://github.com/ryanoasis/vim-devicons.git
+[submodule "pack/vendor/start/lexima.vim"]
+	path = pack/vendor/start/lexima.vim
+	url = https://github.com/cohama/lexima.vim.git
+[submodule "pack/vendor/start/vim-gitgutter"]
+	path = pack/vendor/start/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
