@@ -99,3 +99,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the complete workflow. Automated cont
 - [CONTRIBUTING.md](CONTRIBUTING.md): development workflow, commit conventions, and pre-commit checklist.
 - [CHANGELOG.md](CHANGELOG.md): project change log.
 - [AGENTS.md](AGENTS.md): repository-wide rules for automated contributors.
+- [Initial workspace code review](docs/reviews/2026-08-24-integrated-workspace.md): prioritized findings preserved for follow-up work.

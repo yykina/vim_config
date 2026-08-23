@@ -18,6 +18,7 @@ This file records changes intended for version control. New work is recorded und
 - Added focus-independent background directory polling and automatic refresh for a visible NERDTree.
 - Added automatic delimiter pairing and paired editing through lexima.vim.
 - Added vim-gitgutter indicators and hunk navigation for line-level Git changes.
+- Added a dated code review report that preserves prioritized follow-up work for the integrated Vim workspace.
 
 ### Changed
 
