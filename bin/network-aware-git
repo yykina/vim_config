@@ -1,0 +1,60 @@
+#!/bin/sh
+
+# Keep background decoration jobs away from network-backed working trees.
+network_root=
+previous_arg=
+for current_arg do
+  if [ "$previous_arg" = '-C' ]; then
+    network_root=$current_arg
+    break
+  fi
+  previous_arg=$current_arg
+done
+
+if [ -n "$network_root" ] && [ -r /proc/self/mountinfo ]; then
+  if awk -v target="$network_root" '
+    function decode(path) {
+      gsub(/\\040/, " ", path)
+      gsub(/\\011/, "\t", path)
+      gsub(/\\012/, "\n", path)
+      gsub(/\\134/, "\\", path)
+      return path
+    }
+
+    function is_network(type) {
+      return type == "fuse.sshfs" || type == "sshfs" ||
+        type == "nfs" || type == "nfs4" ||
+        type == "cifs" || type == "smb3" ||
+        type == "davfs" || type == "davfs2" ||
+        type == "fuse.rclone"
+    }
+
+    {
+      separator = 0
+      for (field = 6; field <= NF; field++) {
+        if ($field == "-") {
+          separator = field
+          break
+        }
+      }
+      if (!separator) {
+        next
+      }
+
+      mountpoint = decode($5)
+      under_mount = mountpoint == "/" || target == mountpoint ||
+        index(target, mountpoint "/") == 1
+      if (under_mount && length(mountpoint) > best_length) {
+        best_length = length(mountpoint)
+        network = is_network($(separator + 1))
+      }
+    }
+
+    END { exit network ? 0 : 1 }
+  ' /proc/self/mountinfo; then
+    printf '%s\n' 'Background Git is disabled on network filesystems.' >&2
+    exit 1
+  fi
+fi
+
+exec git "$@"
